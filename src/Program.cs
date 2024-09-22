@@ -2,13 +2,16 @@
 
 internal class Program
 {
-    private static Proxy _proxy;
+    private static IProxy _proxy;
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="args">
-    /// 0 - host:port
+    /// 0 - host
+    /// 1 - port
+    /// 2 - username (can be empty)
+    /// 3 - password (can be empty)
     /// </param>
     private static void Main(string[] args)
     {
@@ -18,8 +21,8 @@ internal class Program
 
         try
         {
-            _proxy = new Proxy();
-            _proxy.Enable(args[0]);
+            _proxy = Proxy.Create(args);
+            _proxy.Enable();
         }
         catch (Exception e)
         {
